@@ -10,9 +10,9 @@
 ;; evaluating this file and print errors in the *Messags* buffer.
 ;; Use this file in place of ~/.emacs (which is loaded as well.)
 
-;(add-to-list 'load-path "~/emacs_packages")
-
 (add-to-list 'custom-theme-load-path "~/emacs_packages")
+
+(add-to-list 'load-path "~/emacs_files")
 
 (require 'package)
 (add-to-list 'package-archives
@@ -116,6 +116,10 @@
 
 (eval-after-load 'company
   '(push 'company-robe company-backends))
+
+;; TODO: Commit RVM.el into source control and/or figure out a way to directly retrieve it from GitHub
+(require 'rvm)
+;(rvm-use-default)
 
 
 ;;;; Initialize Clojure environment
