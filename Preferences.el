@@ -12,7 +12,7 @@
 
 (add-to-list 'custom-theme-load-path "~/emacs_packages")
 
-(add-to-list 'load-path "~/emacs_files")
+(add-to-list 'load-path "~/git/emacs-libraries")
 
 (require 'package)
 (add-to-list 'package-archives
@@ -44,18 +44,10 @@
 ;;;; Linum setup
 (global-linum-mode t)
 
-;; Prevent the font size of line  numbers from increasing excessively when the buffer font
-;; size increases.  The fix comes from https://unix.stackexchange.com/a/237023.
-(defun linum-update-window-scale-fix (win)
-  "fix linum for scaled text"
-  (set-window-margins win
-          (ceiling (* (if (boundp 'text-scale-mode-step)
-                  (expt text-scale-mode-step
-                    text-scale-mode-amount) 1)
-              (if (car (window-margins))
-                  (car (window-margins)) 1)
-              ))))
-(advice-add #'linum-update-window :after #'linum-update-window-scale-fix)
+;; See http://stackoverflow.com/questions/9304192/emacs-linum-mode-and-size-of-font-unreadable-line-numbers
+(eval-after-load "linum"
+  '(set-face-attribute 'linum nil :height 100))
+
 
 ;;;; Miscellaneous setup
 
