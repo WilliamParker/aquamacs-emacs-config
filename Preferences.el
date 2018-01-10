@@ -29,10 +29,10 @@
              (package-install user-package)))
 
 (defconst my-packages '(auctex clojure-mode neotree rainbow-delimiters
-                        smooth-scrolling atom-one-dark-theme cider
+                        smooth-scrolling atom-one-dark-theme cider helm-cider
                         god-mode elpy helm git-timemachine color-theme-modern
                         projectile helm-projectile browse-kill-ring company company-flx markdown-mode
-                        enh-ruby-mode helm-ag))
+                        enh-ruby-mode helm-ag solarized-theme ensime))
 
 ;; Packages used in past: jdee clj-refactor cljr-helm excorporate calfw
 
@@ -56,6 +56,9 @@
 (setq neo-window-width 90)
 (setq Buffer-menu-name-width 40)
 (set-face-attribute 'minibuffer nil :height 200)
+
+(setq god-exempt-major-modes nil)
+(setq god-exempt-predicates nil)
 
 ;;;; Coloring setup
 
@@ -127,7 +130,7 @@
 
 ;; TODO: Commit RVM.el into source control and/or figure out a way to directly retrieve it from GitHub
 (require 'rvm)
-;(rvm-use-default)
+(rvm-use-default)
 
 
 ;;;; Initialize Clojure environment
@@ -167,6 +170,8 @@
                                  :buffer "helm-clojure-headlines"))
 
 (require 'cljr-helm)
+(require 'helm-cider)
+(helm-cider-mode 1)
 
 ;;;; Initialize LaTeX environment
 
